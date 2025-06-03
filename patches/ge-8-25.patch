@@ -24,9 +24,9 @@ diff -uraN wine-src/dlls/ntdll/unix/esync.c b/dlls/ntdll/unix/esync.c
 +	if (termux_esync)
 +	{
 +    	if (st.st_ino != (unsigned long)st.st_ino)
-+        	sprintf( shm_name, "/data/data/com.termux/files/usr/tmp/wine-%lx%08lx-esync", (unsigned long)((unsigned long long)st.st_ino >> 32), (unsigned long)st.st_ino );
++        	sprintf( shm_name, "/data/data/com.nightmare.neo/files/usr/tmp/wine-%lx%08lx-esync", (unsigned long)((unsigned long long)st.st_ino >> 32), (unsigned long)st.st_ino );
 +    	else
-+        	sprintf( shm_name, "/data/data/com.termux/files/usr/tmp/wine-%lx-esync", (unsigned long)st.st_ino );
++        	sprintf( shm_name, "/data/data/com.nightmare.neo/files/usr/tmp/wine-%lx-esync", (unsigned long)st.st_ino );
 +    }
      else
 -        sprintf( shm_name, "/wine-%lx-esync", (unsigned long)st.st_ino );
@@ -50,10 +50,10 @@ diff -uraN wine-src/dlls/ntdll/unix/server.c b/dlls/ntdll/unix/server.c
      strcat( dir, "/.wineserver/server-" );
  #else
 -    len += sizeof("/tmp/.wine-") + 12;
-+    len += sizeof("/data/data/com.termux/files/usr/tmp/.wine-") + 12;
++    len += sizeof("/data/data/com.nightmare.neo/files/usr/tmp/.wine-") + 12;
      dir = malloc( len );
 -    sprintf( dir, "/tmp/.wine-%u/server-", getuid() );
-+    sprintf( dir, "/data/data/com.termux/files/usr/tmp/.wine-%u/server-", getuid() );
++    sprintf( dir, "/data/data/com.nightmare.neo/files/usr/tmp/.wine-%u/server-", getuid() );
  #endif
      p = dir + strlen( dir );
      if (dev != (unsigned long)dev)
@@ -62,7 +62,7 @@ diff -uraN wine-src/dlls/ntdll/unix/server.c b/dlls/ntdll/unix/server.c
          set_case_insensitive( "drive_c" );
          symlink( "../drive_c", "dosdevices/c:" );
 -        symlink( "/", "dosdevices/z:" );
-+        symlink( "/data/data/com.termux/files", "dosdevices/z:" );
++        symlink( "/data/data/com.nightmare.neo/files", "dosdevices/z:" );
      }
      else if (errno != EEXIST) fatal_perror( "cannot create %s/dosdevices", config_dir );
  
@@ -74,7 +74,7 @@ diff -uraN wine-src/programs/winebrowser/main.c b/programs/winebrowser/main.c
      static const WCHAR defaultbrowsers[] =
          L"xdg-open\0"
 -        "/usr/bin/open\0"
-+        "/data/data/com.termux/files/usr/glibc/bin/open\0"
++        "/data/data/com.nightmare.neo/files/usr/glibc/bin/open\0"
          "firefox\0"
          "konqueror\0"
          "mozilla\0"
@@ -83,7 +83,7 @@ diff -uraN wine-src/programs/winebrowser/main.c b/programs/winebrowser/main.c
  {
      static const WCHAR defaultmailers[] =
 -        L"/usr/bin/open\0"
-+        L"/data/data/com.termux/files/usr/glibc/bin/open\0"
++        L"/data/data/com.nightmare.neo/files/usr/glibc/bin/open\0"
          "xdg-email\0"
          "mozilla-thunderbird\0"
          "thunderbird\0"
@@ -95,7 +95,7 @@ diff -uraN wine-src/programs/winemenubuilder/winemenubuilder.c b/programs/wineme
          dirs = xwcsdup( _wgetenv( L"XDG_DATA_DIRS" ));
      else
 -        dirs = xwcsdup( L"/usr/local/share/:/usr/share/" );
-+        dirs = xwcsdup( L"/data/data/com.termux/files/usr/glibc/local/share/:/data/data/com.termux/files/usr/glibc/share/" );
++        dirs = xwcsdup( L"/data/data/com.nightmare.neo/files/usr/glibc/local/share/:/data/data/com.nightmare.neo/files/usr/glibc/share/" );
  
      ret = add_mimes(xdg_data_dir, mime_types);
      if (ret)
@@ -135,9 +135,9 @@ diff -uraN wine-src/server/esync.c b/server/esync.c
 +    if (termux_esync)
 +	{
 +    	if (st.st_ino != (unsigned long)st.st_ino)
-+        	sprintf( shm_name, "/data/data/com.termux/files/usr/tmp/wine-%lx%08lx-esync", (unsigned long)((unsigned long long)st.st_ino >> 32), (unsigned long)st.st_ino );
++        	sprintf( shm_name, "/data/data/com.nightmare.neo/files/usr/tmp/wine-%lx%08lx-esync", (unsigned long)((unsigned long long)st.st_ino >> 32), (unsigned long)st.st_ino );
 +    	else
-+        	sprintf( shm_name, "/data/data/com.termux/files/usr/tmp/wine-%lx-esync", (unsigned long)st.st_ino );
++        	sprintf( shm_name, "/data/data/com.nightmare.neo/files/usr/tmp/wine-%lx-esync", (unsigned long)st.st_ino );
 +        unlink( shm_name );
 +        shm_fd = open( shm_name, O_RDWR | O_CREAT | O_EXCL, 0644 );
 +    }
@@ -166,10 +166,10 @@ diff -uraN wine-src/server/request.c b/server/request.c
      strcat( server_dir, "/.wineserver" );
  #else
 -    len += sizeof("/tmp/.wine-") + 12;
-+    len += sizeof("/data/data/com.termux/files/usr/tmp/.wine-") + 12;
++    len += sizeof("/data/data/com.nightmare.neo/files/usr/tmp/.wine-") + 12;
      if (!(server_dir = malloc( len ))) fatal_error( "out of memory\n" );
 -    sprintf( server_dir, "/tmp/.wine-%u", getuid() );
-+    sprintf( server_dir, "/data/data/com.termux/files/usr/tmp/.wine-%u", getuid() );
++    sprintf( server_dir, "/data/data/com.nightmare.neo/files/usr/tmp/.wine-%u", getuid() );
  #endif
      create_dir( server_dir, &st2 );
  
@@ -181,7 +181,7 @@ diff -uraN wine-src/server/unicode.c b/server/unicode.c
  struct fd *load_intl_file(void)
  {
 -    static const char *nls_dirs[] = { NULL, NLSDIR, "/usr/local/share/wine/nls", "/usr/share/wine/nls" };
-+    static const char *nls_dirs[] = { NULL, NLSDIR, "/data/data/com.termux/files/usr/glibc/local/share/wine/nls", "/data/data/com.termux/files/usr/glibc/share/wine/nls" };
++    static const char *nls_dirs[] = { NULL, NLSDIR, "/data/data/com.nightmare.neo/files/usr/glibc/local/share/wine/nls", "/data/data/com.nightmare.neo/files/usr/glibc/share/wine/nls" };
      static const WCHAR nt_pathW[] = {'C',':','\\','w','i','n','d','o','w','s','\\',
          's','y','s','t','e','m','3','2','\\','l','_','i','n','t','l','.','n','l','s',0};
      static const struct unicode_str nt_name = { nt_pathW, sizeof(nt_pathW) };
